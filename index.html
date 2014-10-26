@@ -21,7 +21,7 @@
     href="../components/core-toolbar/core-toolbar.html">
   <link rel="import"
     href="../components/paper-tabs/paper-tabs.html">
-  <link rel="import" href="post-list.html">
+<!--   <link rel="import" href="post-list.html"> -->
 
   <style>
   html,body {
@@ -64,6 +64,18 @@
     color: #03a9f4
 
 }
+  a {
+    font-size: 3em;
+    max-width: 6em;
+    margin: 1em 0 0 1em;
+    padding: .20em;
+    line-height: 80%;
+    font-weight: normal;
+    background: rgba(255,255,255,.8) none;
+    border-radius: .25em;
+    color: #03a9f4
+
+}
 
   #tabs {
     width: 100%;
@@ -89,20 +101,16 @@
   
   </style>
 
-</head>
-
-<body unresolved>
-
   <core-header-panel>
-  	<h1>Todd Dicken</h1>
+<!--     <h1>Todd Dicken</h1> -->
     <core-toolbar>
 
-      <paper-tabs id="tabs" selected="all" self-end>
-        <paper-tab name="all">Home</paper-tab>
-        <paper-tab name="favorites">Projects</paper-tab>
+      <paper-tabs id="tabs" selected="home" self-end>
+        <paper-tab name="home">Home</paper-tab>
+        <paper-tab name="favoriter">Projects</paper-tab>
         <paper-tab name="contact">Contact</paper-tab>
       </paper-tabs>
-	</core-toolbar>
+  </core-toolbar>
 
 <!-- 
     <div class="container" layout vertical center>
@@ -110,7 +118,29 @@
     </div>
  -->
 
+            <div id="home" style="display:none">>
+                <h1>Todd Dicken</h1>
+            </div>
+
+            <div id="coder" style="display:none">
+                <h1>Code</h1>
+            </div>
+
+            <div id="contacter" style="display:none">
+                <h1>Contact</h1>
+                <a href="www.medium.com/@todddicken">Medium</a>
+                <a href="www.linkedin.com/in/todddicken">LinkedIn</a>
+                <a href="www.github.com/tdicken73">Github</a>
+                <a href="www.facebook.com/in/todddicken">Facebook</a>
+            </div>
+ 
   </core-header-panel>
+
+</head>
+
+
+
+<body>
 
   <script>
 
@@ -122,6 +152,35 @@
 //   });
   </script>
 
+</body>
+
+<body>
+    <script>
+    var tabs = document.querySelector('paper-tabs');
+    var list = document.querySelector('post-list');
+    var last = document.getElementById("home");
+
+    tabs.addEventListener('core-select', function() {
+        if (last != null) {
+            last.style.display = 'none';
+        }
+
+        // list.show = tabs.selected;
+        if (tabs.selected == "home") {
+            last = document.getElementById("home")
+        }
+        if (tabs.selected == "favoriter") {
+            last = document.getElementById("coder")
+        }
+        if (tabs.selected == "contact") {
+            last = document.getElementById("contacter")
+        }
+
+        last.style.display = 'block';
+
+        console.log("Selected: " + tabs.selected)
+    });
+    </script>
 </body>
 
 </html>
